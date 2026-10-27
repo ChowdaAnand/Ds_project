@@ -15,8 +15,8 @@ from datetime import datetime
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 import database
 
-PORT = 8000
-HOST = "127.0.0.1"
+PORT = int(os.environ.get("PORT", 8000))
+HOST = "0.0.0.0"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 UPLOADS_DIR = os.path.join(BASE_DIR, "uploads")
 os.makedirs(UPLOADS_DIR, exist_ok=True)
