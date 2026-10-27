@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Science Digital Library | CHOWDA ANAND · Mohan Babu University</title>
+  <meta name="description" content="Personal Data Science Digital Library of CHOWDA ANAND, CSE - Data Science, Mohan Babu University. Explore modules, run lab experiments, analyze datasets with Python.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+</head>
+<body>
+
+  <!-- ===================================================================
+       TOP NAVIGATION BAR
+       =================================================================== -->
+  <header class="topbar">
+    <a class="brand" href="#home" onclick="showSection('home', this)">
+      <span class="brand-mark"><i class="fa-solid fa-book-open-reader"></i></span>
+      <span><b>Data Science</b><small>Digital Lib</small></span>
+    </a>
+
+    <button class="mobile-menu-toggle" id="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <nav class="topnav" id="topnav" aria-label="Main navigation">
+      <button class="nav-link active" data-section="home" onclick="showSection('home', this)">
+        <i class="fa-solid fa-house"></i> Overview
+      </button>
+      <button class="nav-link" data-section="modules" onclick="showSection('modules', this)">
+        <i class="fa-solid fa-book"></i> Modules
+      </button>
+      <button class="nav-link" data-section="labs" onclick="showSection('labs', this)">
+        <i class="fa-solid fa-flask"></i> Lab Practice
+      </button>
+      <button class="nav-link" data-section="csvstudio" onclick="showSection('csvstudio', this)">
+        <i class="fa-solid fa-chart-column"></i> CSV Studio
+      </button>
+      <button class="nav-link" data-section="resources" onclick="showSection('resources', this)">
+        <i class="fa-solid fa-folder-open"></i> Resources
+      </button>
+      <button class="nav-link" data-section="tools" onclick="showSection('tools', this)">
+        <i class="fa-solid fa-screwdriver-wrench"></i> Tools
+      </button>
+      <button class="nav-link" data-section="sandbox" onclick="showSection('sandbox', this)">
+        <i class="fa-solid fa-terminal"></i> Live Code
+      </button>
+      <button class="nav-link" data-section="ai" onclick="showSection('ai', this)">
+        <i class="fa-solid fa-robot"></i> AI Assistant
+      </button>
+      <button class="nav-link" data-section="profile" onclick="showSection('profile', this)">
+        <i class="fa-solid fa-user"></i> Profile
+      </button>
+    </nav>
+
+    <div class="top-user" onclick="showSection('profile', document.querySelector('[data-section=profile]'))">
+      <img src="assets/profile.jpg" alt="Chowda Anand" id="topbar-avatar"
+        onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%236366F1%22/><text x=%2250%22 y=%2260%22 font-size=%2240%22 fill=%22white%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-weight=%22bold%22>CA</text></svg>'">
+      <span class="top-user-details">
+        <b id="topbar-name">CHOWDA ANAND</b>
+        <small>Data Science Student</small>
+        <small class="register-id" id="topbar-roll">MBU · 3rd Year</small>
+      </span>
+    </div>
+  </header>
+
+  <!-- Python Status Badge (floating) -->
+  <div class="python-status-float" id="python-status-float" title="Python runtime status">
+    <span class="status-dot-pulse" id="status-pulse-dot"></span>
+    <span id="system-status-text">Python Engine</span>
+  </div>
+
+  <!-- ===================================================================
+       MAIN CONTENT SHELL
+       =================================================================== -->
+  <main class="shell">
+
+    <!-- ==================================================================
+         1. HOME / OVERVIEW
+         ================================================================== -->
+    <section id="home" class="page-section active-section">
+
+      <!-- Hero Grid -->
+      <div class="welcome-grid">
+        <div class="welcome-copy">
+          <div class="eyebrow"><span class="dot"></span> YOUR PERSONAL LEARNING SPACE</div>
+          <h1>Learn data.<br><em>Discover insight.</em></h1>
+          <p>Your home for Data Science modules, lab experiments, study resources and the tools you need to keep learning — all in one place.</p>
+          <div class="hero-actions">
+            <button class="primary-btn" onclick="showSection('modules', document.querySelector('[data-section=modules]'))">
+              Explore Modules <i class="fa-solid fa-arrow-right"></i>
+            </button>
+            <button class="primary-btn secondary-action" onclick="showSection('labs', document.querySelector('[data-section=labs]'))">
+              <i class="fa-solid fa-flask"></i> Open Lab
+            </button>
+            <a class="text-btn" id="hero-github-link" href="#" target="_blank" rel="noopener" style="display:none;">
+              My GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="welcome-visual">
+          <div class="orb orb-a"></div>
+          <div class="orb orb-b"></div>
+          <div class="visual-card">
+            <span class="visual-icon"><i class="fa-solid fa-chart-simple"></i></span>
+            <span class="visual-label">LEARNING PATH</span>
+            <h2>Curiosity → Analysis → Insight</h2>
+            <div class="mini-bars">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <div class="visual-footer">
+              <span>Keep building your skills</span>
+              <i class="fa-solid fa-arrow-trend-up"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Student ID Card -->
+      <aside class="student-id-card" aria-label="Student ID card">
+        <div class="id-card-top">
+          <span>MOHAN BABU UNIVERSITY</span>
+          <span class="id-card-mark">DS</span>
+        </div>
+        <div class="id-card-body">
+          <img src="assets/profile.jpg" alt="Student photo" id="id-card-photo"
+            onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%236366F1%22/><text x=%2250%22 y=%2260%22 font-size=%2240%22 fill=%22white%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-weight=%22bold%22>CA</text></svg>'">
+          <div>
+            <span class="id-chip">STUDENT ID</span>
+            <h3 id="id-card-name">CHOWDA ANAND</h3>
+            <p>CSE · Data Science</p>
+            <strong id="id-card-roll">3rd Year</strong>
+            <small id="id-card-extra">DATA SCIENCE DIGITAL LIBRARY · 2026</small>
+          </div>
+        </div>
+        <div class="id-card-bottom">
+          <span>DATA SCIENCE DIGITAL LIB</span>
+          <span>2026</span>
+        </div>
+      </aside>
+
+      <!-- AT A GLANCE -->
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">AT A GLANCE</span>
+          <h2>Your learning dashboard</h2>
+        </div>
+        <span class="section-note">A simple overview of your library</span>
+      </div>
+
+      <div class="metric-grid">
+        <article class="metric">
+          <span class="metric-icon mint"><i class="fa-solid fa-flask"></i></span>
+          <div>
+            <span>Lab Experiments</span>
+            <strong id="metric-total">10</strong>
+            <small>DS01 through DS10</small>
+          </div>
+        </article>
+        <article class="metric">
+          <span class="metric-icon peach"><i class="fa-solid fa-circle-check"></i></span>
+          <div>
+            <span>Completed</span>
+            <strong class="score" id="metric-completed">0</strong>
+            <small>Verified lab runs</small>
+          </div>
+        </article>
+        <article class="metric">
+          <span class="metric-icon blue"><i class="fa-solid fa-book-open"></i></span>
+          <div>
+            <span>Study Modules</span>
+            <strong class="score">05</strong>
+            <small>Notes &amp; slides</small>
+          </div>
+        </article>
+        <article class="metric">
+          <span class="metric-icon lilac"><i class="fa-solid fa-percent"></i></span>
+          <div>
+            <span>Completion Rate</span>
+            <strong class="score" id="metric-percent">0%</strong>
+            <small>Progress tracker</small>
+          </div>
+        </article>
+        <article class="metric">
+          <span class="metric-icon mint"><i class="fa-brands fa-github"></i></span>
+          <div>
+            <span>GitHub Profile</span>
+            <strong class="profile-status" id="metric-github-status">Not Set</strong>
+            <small><a id="metric-github-link" href="#" target="_blank" rel="noopener" style="color:inherit;display:none;">Open profile ↗</a><span id="metric-github-placeholder">Add in Profile</span></small>
+          </div>
+        </article>
+      </div>
+
+      <!-- Continue Exploring: recent activity + progress ledger -->
+      <div class="section-heading module-heading">
+        <div>
+          <span class="eyebrow">YOUR LIBRARY</span>
+          <h2>Continue exploring</h2>
+        </div>
+        <button class="quiet-btn" onclick="showSection('labs', document.querySelector('[data-section=labs]'))">
+          All experiments <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+
+      <!-- Experiment mini ledger -->
+      <div class="ledger-grid" id="home-ledger-list">
+        <!-- Populated dynamically -->
+      </div>
+
+    </section>
+
+    <!-- ==================================================================
+         2. CURRICULUM MODULES
+         ================================================================== -->
+    <section id="modules" class="page-section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">ACADEMIC SYLLABUS · 22DS102006</span>
+          <h2>Curriculum Modules</h2>
+          <p class="section-subtext">Comprehensive curriculum notes, theoretical foundations, and slide presentations for the 5 prescribed Data Science modules.</p>
+        </div>
+      </div>
+
+      <div class="module-grid" id="modules-container">
+        <!-- Populated dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         3. LAB PRACTICE (EXPERIMENTS)
+         ================================================================== -->
+    <section id="labs" class="page-section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">LABORATORY · DS01–DS10</span>
+          <h2>Lab Practice Experiments</h2>
+          <p class="section-subtext">Execute, test, and upload outputs for all 10 Data Science experiments.</p>
+        </div>
+      </div>
+
+      <!-- Search & Filter Toolbar -->
+      <div class="lab-toolbar">
+        <div class="search-group">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="exp-search-input" class="search-input" placeholder="Search by code (DS01) or title..." onkeyup="handleExpSearchInput(event)">
+          <button class="btn-clear" onclick="clearExpSearch()" title="Clear search">×</button>
+        </div>
+        <div class="filter-pills">
+          <button class="filter-pill active" data-filter="all" onclick="filterExperiments('all')">All (10)</button>
+          <button class="filter-pill" data-filter="Completed" onclick="filterExperiments('Completed')">✅ Completed</button>
+          <button class="filter-pill" data-filter="Running" onclick="filterExperiments('Running')">⏳ Running</button>
+          <button class="filter-pill" data-filter="Not Started" onclick="filterExperiments('Not Started')">⚪ Not Started</button>
+          <button class="filter-pill" data-filter="Failed" onclick="filterExperiments('Failed')">❌ Failed</button>
+        </div>
+      </div>
+
+      <div id="search-feedback-banner" class="feedback-banner" style="display:none;"></div>
+
+      <!-- Experiments Grid -->
+      <div class="experiments-grid" id="experiments-grid">
+        <!-- Populated dynamically -->
+      </div>
+
+      <!-- Workspace Panel -->
+      <div class="workspace-container" id="experiment-workspace">
+        <div class="workspace-header">
+          <div class="workspace-title-area">
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+              <span class="exp-code-badge" id="ws-exp-code">DS01</span>
+              <span class="status-badge not-started" id="ws-exp-status">Not Started</span>
+              <span id="ws-exp-time" class="time-note"></span>
+            </div>
+            <h3 class="workspace-title" id="ws-exp-title">Python Basics and Data Types</h3>
+          </div>
+          <div class="workspace-actions">
+            <button class="btn-action" onclick="openUploadOutputModal()"><i class="fa-solid fa-upload"></i> Upload Output</button>
+            <button class="btn-action secondary" onclick="openSavedOutputsModal()"><i class="fa-solid fa-folder-open"></i> Saved Outputs</button>
+            <button class="btn-action danger" onclick="closeWorkspace()">✕ Close</button>
+          </div>
+        </div>
+
+        <div class="workspace-objective">
+          <strong>Objective:</strong> <span id="ws-exp-objective"></span>
+          <div class="ws-instructions" id="ws-exp-instructions"></div>
+        </div>
+
+        <div class="runtime-status-bar" id="ws-runtime-bar">
+          <span id="ws-runtime-indicator">⚡</span>
+          <span id="ws-runtime-msg">Pyodide Python 3.12 WebAssembly Runtime Ready</span>
+        </div>
+
+        <div class="workspace-grid">
+          <!-- Code Editor -->
+          <div class="code-panel">
+            <div class="code-panel-header">
+              <span><i class="fa-brands fa-python"></i> script.py · Editable Python Code</span>
+              <span class="runtime-label">In-Browser Execution</span>
+            </div>
+            <textarea id="ws-code-editor" class="code-editor-textarea" spellcheck="false" placeholder="# Write or edit Python code here..."></textarea>
+            <div class="code-editor-controls">
+              <div class="editor-left">
+                <button class="run-btn" id="ws-run-btn" onclick="executeCurrentExperiment()">
+                  <span class="spinner" id="ws-run-spinner" style="display:none;"></span>
+                  <span id="ws-run-icon">▶</span>
+                  <span id="ws-run-text">Run Code</span>
+                </button>
+                <button class="btn-sm secondary" onclick="resetCurrentStarterCode()">↺ Reset</button>
+              </div>
+              <button class="btn-sm" onclick="clearWorkspaceOutput()">Clear Output</button>
+            </div>
+          </div>
+
+          <!-- Output Panel -->
+          <div class="output-panel">
+            <div class="output-panel-header">
+              <span><i class="fa-solid fa-terminal"></i> Terminal Output &amp; Canvas</span>
+              <span id="ws-duration-badge" class="duration-badge">0ms</span>
+            </div>
+            <div class="output-body" id="ws-output-body">
+              <div style="color:#6B7280;font-style:italic;">Click 'Run Code' to execute this experiment...</div>
+            </div>
+            <div id="ws-plot-container" style="display:none;padding:1rem;border-top:1px solid rgba(255,255,255,0.08);background:#0B0F19;text-align:center;">
+              <div style="font-size:0.75rem;color:#6366F1;margin-bottom:0.5rem;text-align:left;font-weight:600;">Generated Visualization:</div>
+              <img id="ws-plot-img" style="max-width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1);" alt="Plot">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         4. CSV STUDIO / EDA
+         ================================================================== -->
+    <section id="csvstudio" class="page-section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow" style="color:#10B981;border-color:rgba(16,185,129,0.4);">INTERACTIVE EXPLORATION · EDA STUDIO</span>
+          <h2>CSV Dataset Analyzer &amp; EDA Studio</h2>
+          <p class="section-subtext">Load tabular datasets, audit missing values, compute five-number summaries, and generate instant distribution charts.</p>
+        </div>
+      </div>
+
+      <div class="eda-studio-container">
+        <!-- EDA Toolbar -->
+        <div class="eda-toolbar">
+          <div class="eda-toolbar-left">
+            <label>Select Sample Dataset:</label>
+            <select id="eda-dataset-select" class="form-select" onchange="loadSelectedSampleDataset(this.value)">
+              <option value="student_performance.csv">Student Performance (12 rows, 9 cols)</option>
+              <option value="iris_sample.csv">Fisher Iris Dataset (15 rows, 5 cols)</option>
+            </select>
+            <button class="btn-sm" onclick="reloadCurrentEdaDataset()">↺ Reload</button>
+          </div>
+          <div class="eda-toolbar-right">
+            <label class="file-label">
+              <i class="fa-solid fa-folder-open"></i> Upload CSV
+              <input type="file" id="eda-file-input" accept=".csv" style="display:none;" onchange="handleEdaCustomCsvUpload(this)">
+            </label>
+            <button class="btn-sm primary" onclick="downloadCurrentCsvDataset()">⬇ Download CSV</button>
+          </div>
+        </div>
+
+        <!-- EDA Metrics -->
+        <div class="eda-metrics-grid">
+          <div class="eda-metric-card">
+            <span class="eda-metric-label">Total Records</span>
+            <span class="eda-metric-value" id="eda-rows-count">0</span>
+            <span class="eda-metric-sub">Observation instances</span>
+          </div>
+          <div class="eda-metric-card">
+            <span class="eda-metric-label">Feature Columns</span>
+            <span class="eda-metric-value" style="color:#818CF8;" id="eda-cols-count">0</span>
+            <span class="eda-metric-sub">Variables identified</span>
+          </div>
+          <div class="eda-metric-card">
+            <span class="eda-metric-label">Missing Cells</span>
+            <span class="eda-metric-value" style="color:#10B981;" id="eda-missing-count">0</span>
+            <span class="eda-metric-sub">NaN / Null audit</span>
+          </div>
+          <div class="eda-metric-card">
+            <span class="eda-metric-label">Duplicate Rows</span>
+            <span class="eda-metric-value" style="color:#A78BFA;" id="eda-dup-count">0</span>
+            <span class="eda-metric-sub">Exact duplicates</span>
+          </div>
+        </div>
+
+        <!-- Data Table -->
+        <div class="content-box">
+          <div class="box-header">
+            <h3 class="box-title"><i class="fa-solid fa-table"></i> Tabular Data Preview</h3>
+            <span class="box-meta" id="eda-table-info">Showing all records</span>
+          </div>
+          <div class="eda-table-wrapper" id="eda-table-container"></div>
+        </div>
+
+        <!-- Chart Generator -->
+        <div class="content-box">
+          <div class="box-header">
+            <h3 class="box-title"><i class="fa-solid fa-chart-bar"></i> Automated Column Distribution</h3>
+            <div style="display:flex;align-items:center;gap:0.6rem;">
+              <select id="eda-chart-col-select" class="form-select" style="width:180px;"></select>
+              <button class="btn-sm primary" onclick="generateEdaColumnChart()"><i class="fa-solid fa-chart-line"></i> Render Plot</button>
+            </div>
+          </div>
+          <div id="eda-chart-canvas-area" class="eda-chart-area">
+            <span style="color:#6B7280;font-style:italic;">Select a column and click 'Render Plot' to generate distribution graph.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         5. RESOURCES & DATASETS
+         ================================================================== -->
+    <section id="resources" class="page-section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">REFERENCE SHELF · ACADEMIC REPOSITORIES</span>
+          <h2>Learning Resources &amp; Datasets</h2>
+          <p class="section-subtext">Curated textbook references, official cheat sheets, sample ML datasets, and academic repositories.</p>
+        </div>
+      </div>
+
+      <div class="resources-grid" id="resources-grid">
+        <!-- Populated dynamically -->
+      </div>
+
+      <!-- Sample Datasets -->
+      <div class="content-box" style="margin-top:2rem;">
+        <div class="box-header">
+          <h3 class="box-title"><i class="fa-solid fa-database"></i> Lab Datasets Available for Practice</h3>
+          <span class="box-meta">Standard benchmark datasets ready for inspection</span>
+        </div>
+        <div class="datasets-grid" style="margin-top:1rem;">
+          <div class="dataset-card">
+            <div class="dataset-card-top">
+              <span class="dataset-badge mint">ACADEMIC BENCHMARK</span>
+              <span class="dataset-filename">student_performance.csv</span>
+            </div>
+            <h4>Student Examination &amp; Attendance Cohort</h4>
+            <p>Features 12 multidimensional records covering Study Hours, Attendance, Midterm and Final Exam scores.</p>
+            <div class="dataset-actions">
+              <button class="btn-sm primary" onclick="loadSampleIntoEda('student_performance.csv')">
+                <i class="fa-solid fa-chart-bar"></i> Open in CSV Studio
+              </button>
+              <button class="btn-sm" onclick="downloadSampleCsv('student_performance.csv')">
+                <i class="fa-solid fa-download"></i> Download CSV
+              </button>
+            </div>
+          </div>
+          <div class="dataset-card">
+            <div class="dataset-card-top">
+              <span class="dataset-badge lilac">CLASSIC ML DATASET</span>
+              <span class="dataset-filename">iris_sample.csv</span>
+            </div>
+            <h4>Fisher Iris Botanical Dimensions</h4>
+            <p>Classic 1936 pattern recognition dataset featuring Sepal Length, Width, Petal Length, Width across 3 species.</p>
+            <div class="dataset-actions">
+              <button class="btn-sm primary" onclick="loadSampleIntoEda('iris_sample.csv')">
+                <i class="fa-solid fa-chart-bar"></i> Open in CSV Studio
+              </button>
+              <button class="btn-sm" onclick="downloadSampleCsv('iris_sample.csv')">
+                <i class="fa-solid fa-download"></i> Download CSV
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         6. TOOLS LIBRARY
+         ================================================================== -->
+    <section id="tools" class="page-section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">TECHNOLOGY STACK</span>
+          <h2>Experiment Tools Used</h2>
+          <p class="section-subtext">Explore all technologies and libraries used throughout the Data Science laboratory.</p>
+        </div>
+      </div>
+
+      <div class="search-group" style="max-width:440px;margin-bottom:1.75rem;">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="tools-search-input" class="search-input" placeholder="Search tools (e.g. Pandas, NumPy, Scikit-learn)..." onkeyup="filterToolsList(this.value)">
+      </div>
+
+      <div class="tools-grid" id="tools-grid">
+        <!-- Populated dynamically -->
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         7. LIVE CODE SANDBOX
+         ================================================================== -->
+    <section id="sandbox" class="page-section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">LIVE EXPERIMENTATION · PYTHON 3.12</span>
+          <h2>Data Science Code Lab &amp; Sandbox</h2>
+          <p class="section-subtext">An unrestricted interactive Python playground. Run ad-hoc scripts, test algorithms, generate Matplotlib figures.</p>
+        </div>
+      </div>
+
+      <!-- Template Selector -->
+      <div class="lab-toolbar" style="margin-bottom:1.25rem;">
+        <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+          <span style="font-size:0.85rem;font-weight:600;color:#94A3B8;">Load Template:</span>
+          <button class="btn-sm" onclick="loadSandboxTemplate('numpy')">NumPy Matrix</button>
+          <button class="btn-sm" onclick="loadSandboxTemplate('pandas')">Pandas Wrangling</button>
+          <button class="btn-sm" onclick="loadSandboxTemplate('matplotlib')">Matplotlib Plot</button>
+          <button class="btn-sm" onclick="loadSandboxTemplate('ml')">ML Regression</button>
+        </div>
+        <span style="font-size:0.8rem;color:#6366F1;">⚡ Zero installation required</span>
+      </div>
+
+      <div class="workspace-grid" style="margin-bottom:2rem;">
+        <div class="code-panel">
+          <div class="code-panel-header">
+            <span><i class="fa-brands fa-python"></i> sandbox.py · Interactive Editor</span>
+            <span class="runtime-label">Pyodide Engine</span>
+          </div>
+          <textarea id="sandbox-editor" class="code-editor-textarea" spellcheck="false" placeholder="# Write any Python code here..."></textarea>
+          <div class="code-editor-controls">
+            <div class="editor-left">
+              <button class="run-btn" id="sandbox-run-btn" onclick="executeSandboxCode()">
+                <span class="spinner" id="sandbox-spinner" style="display:none;"></span>
+                <span id="sandbox-run-icon">▶</span>
+                <span>Run Playground</span>
+              </button>
+              <button class="btn-sm" onclick="clearSandboxCode()">Clear Code</button>
+            </div>
+            <button class="btn-sm" onclick="clearSandboxOutput()">Clear Output</button>
+          </div>
+        </div>
+
+        <div class="output-panel">
+          <div class="output-panel-header">
+            <span><i class="fa-solid fa-terminal"></i> Execution Terminal &amp; Output</span>
+            <span id="sandbox-duration" class="duration-badge">0ms</span>
+          </div>
+          <div class="output-body" id="sandbox-output-body">
+            <div style="color:#6B7280;font-style:italic;">Click 'Run Playground' to execute your code...</div>
+          </div>
+          <div id="sandbox-plot-container" style="display:none;padding:1rem;border-top:1px solid rgba(255,255,255,0.08);background:#0B0F19;text-align:center;">
+            <div style="font-size:0.75rem;color:#6366F1;margin-bottom:0.5rem;text-align:left;font-weight:600;">Generated Visualization:</div>
+            <img id="sandbox-plot-img" style="max-width:100%;border-radius:8px;" alt="Plot">
+          </div>
+        </div>
+      </div>
+
+      <!-- External Compilers -->
+      <div class="content-box">
+        <div class="box-header">
+          <h3 class="box-title"><i class="fa-solid fa-globe"></i> External Browser Compilers &amp; SQL Sandboxes</h3>
+        </div>
+        <div class="ext-compilers-grid">
+          <a href="https://sqliteonline.com/" target="_blank" rel="noopener" class="ext-compiler-card">
+            <i class="fa-solid fa-database" style="font-size:1.5rem;color:#10B981;"></i>
+            <div>
+              <div class="ext-name">SQLite Online</div>
+              <div class="ext-desc">In-browser relational database &amp; SQL runner</div>
+            </div>
+          </a>
+          <a href="https://www.onlinegdb.com/online_c++_compiler" target="_blank" rel="noopener" class="ext-compiler-card">
+            <i class="fa-solid fa-bolt" style="font-size:1.5rem;color:#F59E0B;"></i>
+            <div>
+              <div class="ext-name">Online C++ Compiler</div>
+              <div class="ext-desc">GDB online compiler for high-performance C++</div>
+            </div>
+          </a>
+          <a href="https://www.onlinegdb.com/online_java_compiler" target="_blank" rel="noopener" class="ext-compiler-card">
+            <i class="fa-brands fa-java" style="font-size:1.5rem;color:#EF4444;"></i>
+            <div>
+              <div class="ext-name">Online Java Compiler</div>
+              <div class="ext-desc">Browser-based JDK execution sandbox</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         8. AI STUDY ASSISTANT
+         ================================================================== -->
+    <section id="ai" class="page-section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow" style="color:#A78BFA;border-color:rgba(167,139,250,0.4);">INTELLIGENT STUDY SUPPORT · MBU DATA COPILOT</span>
+          <h2>Data Science AI Study Assistant</h2>
+          <p class="section-subtext">Ask technical questions about Python code, statistical formulas, Pandas methods, machine learning algorithms, or data preprocessing.</p>
+        </div>
+      </div>
+
+      <div class="ai-assistant-container">
+        <div class="ai-chips-label">Suggested Discussion Topics:</div>
+        <div class="ai-chips-row">
+          <button class="ai-chip" onclick="askAiPrompt('Explain the exact difference between Precision, Recall, and F1-Score with formulas.')">Precision vs. Recall vs. F1</button>
+          <button class="ai-chip" onclick="askAiPrompt('How does the K-Means clustering algorithm work step by step, and what is the Elbow Method?')">K-Means &amp; Elbow Method</button>
+          <button class="ai-chip" onclick="askAiPrompt('What is the difference between loc and iloc in Pandas with clear code examples?')">Pandas loc vs. iloc</button>
+          <button class="ai-chip" onclick="askAiPrompt('Explain the Central Limit Theorem and why it is critical for inferential statistics.')">Central Limit Theorem</button>
+          <button class="ai-chip" onclick="askAiPrompt('How do you detect and treat multicollinearity in Multiple Linear Regression?')">Treating Multicollinearity</button>
+          <button class="ai-chip" onclick="askAiPrompt('What is the difference between Min-Max Normalization and Z-Score Standardization?')">Feature Scaling Principles</button>
+        </div>
+
+        <div class="ai-chat-history" id="ai-chat-history">
+          <div class="ai-message assistant">
+            <div class="ai-msg-avatar">🤖</div>
+            <div>
+              <strong>Data Science Copilot:</strong>
+              <p style="margin-top:0.35rem;color:#94A3B8;">
+                Hello Anand! I am your interactive Data Science Study Assistant. Click any suggested topic above or type your own question below regarding lab experiments, code bugs, statistical concepts, or machine learning algorithms.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <form onsubmit="handleAiQuestionSubmit(event)" class="ai-input-box">
+          <input type="text" id="ai-user-input" class="ai-input" placeholder="Ask a question (e.g. How does Pearson correlation differ from Spearman rank correlation?)..." required autocomplete="off">
+          <button type="submit" class="primary-btn" id="ai-send-btn">Ask AI <i class="fa-solid fa-arrow-right"></i></button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         9. STUDENT PROFILE
+         ================================================================== -->
+    <section id="profile" class="page-section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">ACADEMIC PORTFOLIO · VERIFIED CREDENTIALS</span>
+          <h2>Student Profile</h2>
+        </div>
+      </div>
+
+      <div class="profile-container">
+        <!-- Profile Card -->
+        <div class="profile-card">
+          <div class="profile-avatar-box">
+            <img src="assets/profile.jpg" alt="Student Photograph" class="profile-img-large" id="profile-img-display"
+              onerror="this.style.display='none';document.getElementById('profile-img-fallback').style.display='flex';">
+            <div class="profile-avatar-fallback" id="profile-img-fallback" style="display:none;">CA</div>
+            <div class="profile-edit-badge" onclick="openEditProfileModal()" title="Upload Photo">
+              <i class="fa-solid fa-camera"></i>
+            </div>
+          </div>
+
+          <h2 class="profile-name" id="profile-full-name">CHOWDA ANAND</h2>
+          <div class="profile-college" id="profile-college-name">MOHAN BABU UNIVERSITY</div>
+          <div class="profile-branch" id="profile-branch-name">CSE - Data Science · 3rd Year</div>
+
+          <div class="profile-social-row">
+            <a href="#" target="_blank" rel="noopener" class="social-btn" id="profile-github-link" style="display:none;">
+              <i class="fa-brands fa-github"></i> GitHub
+            </a>
+            <a href="#" target="_blank" rel="noopener" class="social-btn" id="profile-linkedin-link" style="display:none;">
+              <i class="fa-brands fa-linkedin"></i> LinkedIn
+            </a>
+          </div>
+
+          <button class="primary-btn" style="width:100%;margin-top:1rem;" onclick="openEditProfileModal()">
+            <i class="fa-solid fa-pen"></i> Edit Profile
+          </button>
+        </div>
+
+        <!-- Details Panel -->
+        <div class="profile-details-panel">
+          <div class="details-header">
+            <div>
+              <h3>Academic Identity &amp; Details</h3>
+              <span>Course: B.Tech Data Science · Academic Laboratory Portfolio</span>
+            </div>
+            <button class="btn-sm" onclick="openEditProfileModal()">Edit Details</button>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="info-label">Full Name</span>
+              <span class="info-value" id="disp-full-name">CHOWDA ANAND</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">College</span>
+              <span class="info-value" id="disp-college">MOHAN BABU UNIVERSITY</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Branch</span>
+              <span class="info-value" id="disp-branch">CSE - Data Science</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Academic Year</span>
+              <span class="info-value" id="disp-year">3rd Year</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Project Title</span>
+              <span class="info-value" id="disp-project">DATA SCIENCE DIGITAL LIBRARY PORTAL</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Roll Number</span>
+              <span class="info-value unsupplied" id="disp-roll">Not supplied yet</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Email</span>
+              <span class="info-value unsupplied" id="disp-email">Not supplied yet</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Section</span>
+              <span class="info-value unsupplied" id="disp-section">Not supplied yet</span>
+            </div>
+          </div>
+
+          <div style="margin-top:1.5rem;">
+            <span class="info-label">Technical Skills</span>
+            <div class="skills-tags" id="profile-skills-tags" style="margin-top:0.6rem;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main><!-- /.shell -->
+
+  <!-- ===================================================================
+       MODALS
+       =================================================================== -->
+
+  <!-- Edit Profile Modal -->
+  <div class="modal-overlay" id="edit-profile-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit Student Profile</h3>
+        <button class="modal-close-btn" onclick="closeEditProfileModal()">&times;</button>
+      </div>
+      <form onsubmit="handleProfileSubmit(event)">
+        <div class="modal-body">
+          <div class="form-group" style="display:flex;align-items:center;gap:1.25rem;margin-bottom:1.5rem;">
+            <img src="assets/profile.jpg" id="modal-photo-preview" class="modal-avatar-preview" alt="Preview">
+            <div style="flex:1;">
+              <label class="form-label">Upload Personal Photograph</label>
+              <input type="file" id="modal-photo-input" accept="image/png,image/jpeg,image/jpg,image/webp" onchange="previewProfilePhoto(this)" style="font-size:0.85rem;color:#94A3B8;">
+              <div style="font-size:0.75rem;color:#6B7280;margin-top:0.25rem;">Supported: PNG, JPG, JPEG, WEBP (Max 5MB)</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Full Name *</label>
+            <input type="text" id="edit-full-name" class="form-input" required value="CHOWDA ANAND">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">College *</label>
+              <input type="text" id="edit-college" class="form-input" required value="MOHAN BABU UNIVERSITY">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Branch *</label>
+              <input type="text" id="edit-branch" class="form-input" required value="CSE - Data Science">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Academic Year *</label>
+              <input type="text" id="edit-year" class="form-input" required value="3rd Year">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Section</label>
+              <input type="text" id="edit-section" class="form-input" placeholder="e.g. Batch-1 / Section-A">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Roll Number</label>
+              <input type="text" id="edit-roll" class="form-input" placeholder="e.g. 24102A030016">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input type="email" id="edit-email" class="form-input" placeholder="student@mbu.asia">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">GitHub URL</label>
+              <input type="url" id="edit-github" class="form-input" placeholder="https://github.com/username">
+            </div>
+            <div class="form-group">
+              <label class="form-label">LinkedIn URL</label>
+              <input type="url" id="edit-linkedin" class="form-input" placeholder="https://linkedin.com/in/username">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Technical Skills (comma-separated)</label>
+            <input type="text" id="edit-skills" class="form-input" placeholder="Python, NumPy, Pandas, Matplotlib, SQL...">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-sm secondary" onclick="closeEditProfileModal()">Cancel</button>
+          <button type="submit" class="primary-btn" id="save-profile-btn">
+            <span class="spinner" id="save-profile-spinner" style="display:none;"></span>
+            Save Changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Upload Output Modal -->
+  <div class="modal-overlay" id="upload-output-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Upload Experiment Output</h3>
+        <button class="modal-close-btn" onclick="closeUploadOutputModal()">&times;</button>
+      </div>
+      <form onsubmit="handleOutputUpload(event)">
+        <div class="modal-body">
+          <div class="upload-exp-label" id="upload-modal-exp-label">Experiment: DS01</div>
+          <div class="form-group">
+            <label class="form-label">Select Output File (PNG, JPG, CSV, TXT, PDF, SVG)</label>
+            <div class="file-drop-area" onclick="document.getElementById('output-file-input').click()">
+              <div style="font-size:2rem;margin-bottom:0.5rem;">📁</div>
+              <div style="font-size:0.92rem;font-weight:600;">Click to browse or drop file here</div>
+              <div style="font-size:0.78rem;color:#6B7280;margin-top:0.35rem;" id="output-file-chosen-name">Max file size: 10MB</div>
+              <input type="file" id="output-file-input" style="display:none;" accept=".png,.jpg,.jpeg,.csv,.txt,.pdf,.svg" onchange="handleOutputFileSelect(this)">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Notes or Execution Summary (Optional)</label>
+            <textarea id="upload-notes" class="form-textarea" placeholder="e.g. Model evaluated with 95% accuracy. Confusion matrix attached."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-sm secondary" onclick="closeUploadOutputModal()">Cancel</button>
+          <button type="submit" class="primary-btn" id="upload-output-submit-btn">
+            <span class="spinner" id="upload-output-spinner" style="display:none;"></span>
+            Upload Artifact
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Saved Outputs Modal -->
+  <div class="modal-overlay" id="saved-outputs-modal">
+    <div class="modal-card" style="max-width:750px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="saved-outputs-title">Saved Experiment Outputs</h3>
+        <button class="modal-close-btn" onclick="closeSavedOutputsModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="saved-outputs-list" style="display:flex;flex-direction:column;gap:0.85rem;"></div>
+        <div id="file-preview-box" style="display:none;margin-top:1.5rem;padding:1.25rem;background:#0B0F19;border:1px solid rgba(255,255,255,0.08);border-radius:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;">
+            <span style="font-size:0.82rem;font-weight:600;color:#818CF8;" id="preview-filename">File Preview</span>
+            <button class="btn-sm" onclick="document.getElementById('file-preview-box').style.display='none'">Close Preview</button>
+          </div>
+          <div id="file-preview-content"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-sm secondary" onclick="closeSavedOutputsModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Module Reader Modal -->
+  <div class="modal-overlay" id="module-reader-modal">
+    <div class="modal-card" style="max-width:820px;max-height:92vh;">
+      <div class="modal-header">
+        <div>
+          <span style="font-size:0.75rem;font-weight:700;color:#A78BFA;text-transform:uppercase;" id="reader-modal-kicker">FOUNDATIONS</span>
+          <h3 class="modal-title" id="reader-modal-title">Module Notes</h3>
+        </div>
+        <button class="modal-close-btn" onclick="closeModuleReaderModal()">&times;</button>
+      </div>
+      <div class="modal-body" style="padding:2rem;">
+        <div id="reader-modal-content" style="color:#E2E8F0;line-height:1.7;font-size:0.95rem;"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-sm secondary" onclick="closeModuleReaderModal()">Close Reader</button>
+        <button class="primary-btn" onclick="downloadCurrentModuleNotes()">
+          <i class="fa-solid fa-download"></i> Download Study Notes (.txt)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase_client.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
